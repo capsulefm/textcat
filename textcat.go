@@ -2,7 +2,7 @@ package textcat
 
 import (
 	"errors"
-	"github.com/pebbe/util"
+	//	"github.com/pebbe/util"
 	"sort"
 	"strings"
 	"unicode/utf8"
@@ -269,6 +269,7 @@ func (tc *TextCat) Classify(text string) (languages []string, err error) {
 	return
 }
 
+/*
 // Add language created by 'textpat' in package github.com/pebbe/textcat/textpat
 func (tc *TextCat) AddLanguage(language, filename string) error {
 	rawlines := make([]string, 0, MaxPatterns)
@@ -330,3 +331,4 @@ func (tc *TextCat) AddLanguage(language, filename string) error {
 
 	return nil
 }
+*/
