@@ -2,7 +2,6 @@ package textcat
 
 import (
 	"errors"
-	//	"github.com/pebbe/util"
 	"sort"
 	"strings"
 	"unicode/utf8"
@@ -179,8 +178,12 @@ func (tc *TextCat) EnableAllUtf8Languages() {
 		}
 	}
 }
-
 func (tc *TextCat) Classify(text string) (languages []string, err error) {
+	languages, _, err = tc.ClassifyWithScores(text)
+	return
+}
+
+func (tc *TextCat) ClassifyWithScores(text string) (languages []string, outScores []int, err error) {
 	var mydata map[string]int
 
 	languages = make([]string, 0, tc.maxCandidates)
@@ -264,6 +267,7 @@ func (tc *TextCat) Classify(text string) (languages []string, err error) {
 	sort.Sort(resultsType(lowScores))
 	for _, sco := range lowScores {
 		languages = append(languages, sco.lang)
+		outScores = append(outScores, sco.score)
 	}
 
 	return
